@@ -59,6 +59,21 @@ int main(){
             printf("%d ",M[i][j]);
         }
     }
+
+    //matriz trocada (coluna 0 >< coluna 3)
+    printf("\nMatriz trocada (coluna 0 >< coluna 3):");
+    for(int i=0;i<N;i++){
+        printf("\n\t");
+        for(int j=0;j<N;j++){
+            if (j == 0){
+                printf("%d ",M[i][j+3]);
+            }else if(j == 2){
+                printf("%d ",M[i][j-3]);
+            }else{
+                printf("%d ",M[i][j]);
+            }
+        }
+    }
     return 0;
 
 }
