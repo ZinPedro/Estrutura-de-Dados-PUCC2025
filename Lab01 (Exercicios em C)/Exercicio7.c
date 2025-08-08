@@ -6,7 +6,7 @@ e informar quantos números são maiores que 30.*/
 
 int main(){
 
-    int n=0,V[7],cnt30=0;
+    int n=0,V[8],cnt30=0;
 
     for(int i=8;i>0;i--){
         printf("Digite um numero (%d numeros restantes): ",i);

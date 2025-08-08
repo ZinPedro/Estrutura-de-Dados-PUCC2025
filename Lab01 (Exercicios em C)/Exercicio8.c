@@ -3,15 +3,12 @@ máximo 3 posições e determine qual é o maior e o
 menor valor da linha 2 e qual é o maior e o menor valor
 da coluna 1.*/
 
-
-//INCOMPLETO
-
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(){
 
-    int M[2][2],Ml2=0,ml2=0,Mc1=0,mc1=0;
+    int M[3][3],Ml2=0,ml2=0,Mc1=0,mc1=0;
 
     printf("Digite a Matriz 3x3: \n");
 
@@ -21,35 +18,35 @@ int main(){
             scanf("%d",&M[i][j]);
 
             //Primeira leitura linha 2
-            if(i==2 && j==1){
+            if(i==1 && j==0){
                 Ml2 = M[i][j];
                 ml2 = M[i][j];
             }
 
             //verificador linha 2
-            if(i==2 && Ml2 < M[i][j]){
+            if(i==1 && Ml2 < M[i][j]){
                 Ml2 = M[i][j];
-            }else if(i==2 || ml2 > M[i][j]){
+            }else if(i==1 && ml2 > M[i][j]){
                 ml2 = M[i][j];
             }
 
             //Primeira leitura linha 2
-            if(i==1 && j==1){
+            if(i==0 && j==0){
                 Mc1 = M[i][j];
                 mc1 = M[i][j];
             }
 
 
             //verificador coluna 1
-            if(j==1 && Mc1 < M[i][j]){
+            if(j==0 && Mc1 < M[i][j]){
                 Mc1 = M[i][j];
-            }else if(i==2 && mc1 > M[i][j]){
+            }else if(i==1 && mc1 > M[i][j]){
                 mc1 = M[i][j];
             }
         }
     }
 
-    printf(" Matriz digitada:");
+    printf("   Matriz digitada:");
 
     for(int i=0;i<3;i++){
         printf("\n\t");
