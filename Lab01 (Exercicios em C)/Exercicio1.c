@@ -1,4 +1,5 @@
 //Elabore um programa em C que leia um número inteiro e determine quantos dígitos 7 possui esse número
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -26,5 +27,4 @@ int main (){
     printf("O número de 7 no número é: %d",contador);
 
     return 0;
-
 }

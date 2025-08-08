@@ -22,6 +22,8 @@ int main(){
             S += (float)i / (i * i);
         }
     }
+    
     printf("O resultado é: %f", S);
+
     return 0;
 }

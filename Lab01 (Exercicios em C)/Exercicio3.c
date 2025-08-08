@@ -3,8 +3,8 @@ primeiros números ímpares consecutivos. Por exemplo:
 3^2 = 1+3+5=9
 4^2 = 1+3+5+7=16
 Elabore um programa que leia um número natural N e calcule
-o seu quadrado usando o cálculo acima.
-*/
+o seu quadrado usando o cálculo acima.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -26,5 +26,4 @@ int main (){
     printf("O quadrado do número digitado é: %d", quadrado);
 
     return 0;
-
 }

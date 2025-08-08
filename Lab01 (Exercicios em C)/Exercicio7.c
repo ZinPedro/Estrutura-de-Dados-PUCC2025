@@ -15,7 +15,7 @@ int main(){
         if(V[n]>30){
             cnt30++;
         }
-
+        
         n++;
     }
 
@@ -28,5 +28,4 @@ int main(){
     printf("\nQuantidade de numeros maiores que 30: %d.", cnt30);
 
     return 0;
-
 }

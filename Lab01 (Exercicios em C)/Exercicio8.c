@@ -61,5 +61,4 @@ int main(){
     printf("O menor numero da coluna 1 eh: %d \n", mc1);
 
     return 0;
-
 }

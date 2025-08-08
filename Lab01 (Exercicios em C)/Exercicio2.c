@@ -5,8 +5,7 @@ NÃO positivo for digitado e irá calcular:
 • A soma dos números que são múltiplos de 3 maiores que
 10
 • A quantidade de múltiplos de 3
-• O percentual de múltiplos de 7
-*/
+• O percentual de múltiplos de 7*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,5 +49,4 @@ int main (){
     printf("A quantidade de números múltiplos de 7 foi: %d \n", cntM7);
 
     return 0;
-
 }

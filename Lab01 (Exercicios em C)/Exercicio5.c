@@ -16,7 +16,6 @@ int main() {
         soma += num;
         num += fib;
         fib = num - fib;
-
     }
 
     printf("A soma da sequencia de Fibonatti eh: %d", soma);
