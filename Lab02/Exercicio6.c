@@ -1,21 +1,22 @@
 /*Elabore uma função recursiva que determina o elemento
 máximo de um vetor*/
 
-//inacabado
-
 #include <stdio.h>
 #include <stdlib.h>
 
-int verifica(int n,int V[],int maior){
+int verifica(int n,int V[]){
 
-        if(n >= 1){
-            if(V[n-1]>V[n]){
-               return verifica(n-1,V,V[n-1]);
+    //caso base
+    if (n==0){
+            return V[0];
+        } else {
+            int maior = verifica(n-1,V);
+
+            if(V[n]>maior){
+               return V[n];
             }else {
-                return verifica(n-1,V,V[n]);
+               return maior ;
             }
-        }else {
-            return;
         }
 
 }
@@ -28,7 +29,7 @@ int main(){
     printf("Qual o tamanho do vetor? ");
     scanf("%d",&n);
 
-    int V[n],j=n;;
+    int V[n],j=n;
 
     for(int i=0;i<n;i++){
         printf("Digite um numero do vetor (numero restantes %d): ",j);
@@ -36,9 +37,9 @@ int main(){
         j--;
     }
 
-    int maior = verifica(n-1,V,V[n]);
+    int maior = verifica(n-1,V);
 
-    printf("snkjsbv: %d",n,soma);
+    printf("O maior numero do vetor eh: %d",maior);
 
 
     return 0;
