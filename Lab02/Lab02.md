@@ -1,7 +1,7 @@
 # Exercicios de revisão (continuação) em C.
 1. Elabore um programa que contenha uma função recebe 3 valores float (n1, n2, n3) e retornar o (x*x)+y+z. Os valores devem ser lidos no programa principal, o resultado também deve ser impresso no principal.
-- Construa essa função de duas maneiras diferentes, respeitando os cabeçalhos abaixo:
-a. float calculo(float x,float y, float z)
+- Construa essa função de duas maneiras diferentes, respeitando os cabeçalhos abaixo:  
+a. float calculo(float x,float y, float z)  
 b. void calculo(float x, float y, float z, float *r)
 
 2. Elabore um programa que leia 3 números inteiros. Este programa deverá ter uma função que retorne o fatorial de um número. Use essa função, para calcular o fatorial dos números lidos (imprima no programa principal).
@@ -14,8 +14,7 @@ b. void calculo(float x, float y, float z, float *r)
 
 6. Elabore uma função recursiva que determina o elemento máximo de um vetor.
 
-7. Elabore um programa que crie uma estrutura com as
-seguintes informações de um produto:
+7. Elabore um programa que crie uma estrutura com as seguintes informações de um produto:
 - Código do produto – inteiro de 3 dígitos
 - Quantidade em estoque - inteiro
 - Valor de compra - real

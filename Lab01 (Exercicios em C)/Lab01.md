@@ -8,17 +8,16 @@
 - O percentual de múltiplos de 7
 
 3. O quadrado de um número natural N é dado pela soma dos N primeiros números ímpares consecutivos. 
-- Por exemplo:
-1. 32 = 1+3+5=9
-2. 42 = 1+3+5+7=16
+- Por exemplo:  
+a. 32 = 1+3+5=9  
+b. 42 = 1+3+5+7=16  
 Elabore um programa que leia um número natural N e calcule o seu quadrado usando o cálculo acima.
 
 4. Escreva um programa que calcule e imprima o valor de S:
 ![Imagem com o calculo de S](Exercicio4(S).png)
 
-5. Dada a sequência matemática de números 2, 3, 5, 8, 13, 21... (Fibonacci)
-Construa um programa que calcule a soma desta sequência
-para os N primeiros termo onde, N é fornecido pelo usuário.
+5. Dada a sequência matemática de números 2, 3, 5, 8, 13, 21... (Fibonacci)  
+Construa um programa que calcule a soma desta sequência para os N primeiros termo onde, N é fornecido pelo usuário.
 - Exemplo: N=5 S= 2+3+5+8+13 = 31
 
 6. Fazer um programa em C para ler um vetor de inteiros positivos de 15 posições, no máximo. Imprimir a quantidade de números pares e a quantidade de múltiplos de 5.
