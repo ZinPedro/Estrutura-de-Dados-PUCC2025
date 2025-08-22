@@ -8,7 +8,7 @@ lista
 que é a união dessas duas listas (Não é permitido elementos
 repetidos na Lista União)*/
 
-//incabado
+//INACABADO
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,12 +41,18 @@ Lista* InsereInicio (Lista *aux,int v){
 Lista* InsereFim (Lista *aux,int v){
     Lista *novo;
     Lista *aux2;
-    aux2 = aux -> prox;
 
     novo = (Lista*) malloc(sizeof(Lista));
     if(novo != NULL){
         novo -> info = v;
         novo -> prox = NULL;
+        printf("Valor '%d' adcionado com exito!",v);
+
+        if(aux == NULL){
+            return novo;
+        }
+
+        aux2 = aux;
 
         while(aux2 -> prox != NULL){
             aux2 = aux2 -> prox;
@@ -54,7 +60,7 @@ Lista* InsereFim (Lista *aux,int v){
 
         aux2 -> prox = novo;
 
-        printf("Valor '%d' adcionado com exito!",v);
+
         return aux;
     }
     printf("Memoria cheia.");
@@ -69,6 +75,7 @@ Lista* ExcluiInicio (Lista *aux){
         free(aux2);
 
         printf("Elemento do inicio da lista excluido!");
+
         return aux;
     }
     printf("A lista ja esta vazia!");
@@ -77,15 +84,20 @@ Lista* ExcluiInicio (Lista *aux){
 
 Lista* ExcluiFim (Lista *aux){
     if (aux != NULL){
-        Lista *aux2;
-        aux2 = aux;
-        while(aux2 -> prox != NULL){
-            aux2 = aux2 -> prox;
-        }
-        free(aux2);
-
         printf("Elemento do fim da lista excluido!");
-        return aux;
+        if (aux -> prox == NULL){
+            free(aux);
+            return NULL;
+        }else{
+            Lista *aux2;
+            aux2 = aux;
+            while(aux2 -> prox -> prox != NULL){
+                aux2 = aux2 -> prox;
+            }
+            free(aux2 -> prox);
+            aux2 -> prox = NULL;
+            return aux;
+        }
     }
     printf("A lista ja esta vazia!");
     return aux;
