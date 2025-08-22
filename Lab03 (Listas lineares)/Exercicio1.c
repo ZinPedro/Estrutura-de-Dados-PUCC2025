@@ -12,8 +12,6 @@ lista. A lista é passada por parâmetro .
 • Uma função que some os elementos de uma lista que é
 passada por parâmetro*/
 
-//INACABADO
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -35,12 +33,10 @@ Lista* Insere (Lista *aux,int v){
     if(novo != NULL){
         novo -> info = v;
         novo -> prox = aux;
-
+        printf("Valor '%d' adcionado com exito!",v);
         return novo;
     }
-    system("cls");
-    printf("\t\t\t---------------------------------------------------------");
-    printf("\n\t\t\tMemoria cheia.");
+    printf("Memoria cheia.");
     return aux;
 }
 
@@ -50,30 +46,26 @@ Lista* Exclui (Lista *aux){
         aux2 = aux;
         aux = aux -> prox;
         free(aux2);
-        system("cls");
-        printf("\t\t\t---------------------------------------------------------");
-        printf("\n\t\t\tUltimo elemento da lista excluido!\n");
+
+        printf("Ultimo elemento da lista excluido!");
         return aux;
     }
-    system("cls");
-    printf("\t\t\t---------------------------------------------------------");
-    printf("\n\t\t\tA lista ja esta vazia!\n");
+    printf("A lista ja esta vazia!");
     return aux;
 }
 
 void Imprime (Lista *aux){
     if(aux == NULL){
-
+        printf("A lista esta vazia!");
     }else {
-        system("cls");
-        printf("\t\t\t---------------------------------------------------------");
-        printf("\n\t\t\tLista: ");
+
+        printf("Lista: ");
         while(aux != NULL){
             printf("%d ",aux -> info);
             aux = aux -> prox;
         }
-        printf("\n");
     }
+    return;
 }
 
 int Busca (Lista *aux,int valor){
@@ -98,11 +90,20 @@ int ListaVazia (Lista *aux){
 int nElemenntosLista(Lista *aux){
     int cnt=0;
     while(aux != NULL){
-        
+        cnt++;
+        aux = aux -> prox;
     }
+    return cnt;
 }
 
-
+int somaLista(Lista *aux){
+    int soma=0;
+    while(aux != NULL){
+        soma += aux->info;
+        aux = aux -> prox;
+    }
+    return soma;
+}
 
 
 
@@ -144,16 +145,26 @@ int main (){
                 printf("\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\tDigite o valor que voce quer inserir na lista: ");
                 scanf("%d",&v);
-                L = Insere(L,v);
                 system("cls");
                 printf("\t\t\t---------------------------------------------------------");
-                printf("\n\t\t\tValor adcionado com exito!\n");
+                printf("\n\t\t\t");
+                L = Insere(L,v);
+                printf("\n");
             break;
             case 2:
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
                 L = Exclui(L);
+                printf("\n");
+
             break;
             case 3:
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
                 Imprime(L);
+                printf("\n");
             break;
             case 4:
                 printf("\t\t\t---------------------------------------------------------");
@@ -180,28 +191,22 @@ int main (){
                 }else{printf("\n\t\t\tErro!");}
             break;
             case 6:
-                
+                verifica = nElemenntosLista(L);
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tO tamanho da lista eh de %d elementos\n",verifica);
             break;
             case 7:
-
+                verifica = somaLista(L);
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tA soma de todos os elementos da lista eh igual a: %d\n",verifica);
             break;
             case 8:
                 sair = 1;
             break;
         }
     }
-
-
-
-    /*Lista *Inicio;
-    Inicio = Inicializa();
-    Inicio = Insere(Inicio);
-    Inicio = Insere(Inicio);
-    Inicio = Insere(Inicio);
-    Imprime(Inicio);
-    Inicio = Exclui(Inicio);
-    Imprime(Inicio);
-*/
 
     return 0;
 }
