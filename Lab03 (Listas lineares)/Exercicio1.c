@@ -28,85 +28,126 @@ Lista* Inicializa (){
     return NULL;
 }
 
-Lista* Insere (Lista *aux){
-    int v;
+Lista* Insere (Lista *aux,int v){
     Lista *novo;
-
-    printf("\nDigite o valor que voce quer inserir na lista: ");
-    scanf("%d",&v);
 
     novo = (Lista*) malloc(sizeof(Lista));
     if(novo != NULL){
         novo -> info = v;
         novo -> prox = aux;
+
         return novo;
     }
-    printf("Memoria cheia.");
+    system("cls");
+    printf("\t\t\t---------------------------------------------------------");
+    printf("\n\t\t\tMemoria cheia.");
     return aux;
 }
 
 Lista* Exclui (Lista *aux){
-    Lista *aux2;
-    aux2 = aux;
-    aux = aux -> prox;
-    free(aux2);
-    printf("\nUltimo elemento da lista excluido!\n");
+    if (aux != NULL){
+        Lista *aux2;
+        aux2 = aux;
+        aux = aux -> prox;
+        free(aux2);
+        system("cls");
+        printf("\t\t\t---------------------------------------------------------");
+        printf("\n\t\t\tUltimo elemento da lista excluido!\n");
+        return aux;
+    }
+    system("cls");
+    printf("\t\t\t---------------------------------------------------------");
+    printf("\n\t\t\tA lista ja esta vazia!\n");
     return aux;
 }
 
 void Imprime (Lista *aux){
     if(aux == NULL){
-        printf("A lista esta vazia!");
+
     }else {
-        printf("Lista: ");
+        system("cls");
+        printf("\t\t\t---------------------------------------------------------");
+        printf("\n\t\t\tLista: ");
         while(aux != NULL){
             printf("%d ",aux -> info);
             aux = aux -> prox;
         }
+        printf("\n");
     }
 }
 
-int Busca (Lista *aux){
-    int v;
-    printf("Qual o valor que você quer buscar: ");
-    scanf("%d",&v);
+int Busca (Lista *aux,int valor){
     while (aux != NULL){
-        if (aux -> info == v){
-            printf("O valor existe na lista!");
+        if (aux -> info == valor){
             return 1;
         }
         aux = aux -> prox;
     }
-    printf("O valor não existe na lista!");
+
     return 0;
 }
 
+int ListaVazia (Lista *aux){
+    if (aux == NULL){
+        return 1;
+    }else {
+        return 0;
+    }
+}
+
+int nElemenntosLista(Lista *aux){
+    int cnt=0;
+    while(aux != NULL){
+        
+    }
+}
+
+
+
+
+
 int main (){
-    int op;
+    int op,verifica,v;
     int sair = 0;
-    printf("\t\t\t---------------------------------------------------------");
-    printf("\n\t\t\t | MENU |");
-    printf("\n\t\t\t---------------------------------------------------------");
-    printf("\n\t\t\t | Opcoes: ");
-    printf("\n\t\t\t\t 1. Inserir valor (inteiro) na lista: ");
-    printf("\n\t\t\t\t 2. Remover ultimo valor inserido da lista: ");
-    printf("\n\t\t\t\t 2. Imprimir lista: ");
-    printf("\n\t\t\t\t 4. Buscar valor na lista: ");
-    printf("\n\t\t\t\t 5. Verificar se a lista esta vazia: ");
-    printf("\n\t\t\t\t 6. Verificar o numero de elementos da lista: ");
-    printf("\n\t\t\t\t 7. Soma dos elementos da lista: ");
-    printf("\n\t\t\t\t 8. Sair. ");
-    printf("\n\t\t\t---------------------------------------------------------");
-    printf("\n\t\t\tDigite o numero referente a opcao desejada: ");
-    scanf("%d",op);
+
 
     Lista *L;
     L = Inicializa();
 
     while (sair != 1){
+
+        printf("\t\t\t---------------------------------------------------------");
+        printf("\n\t\t\t | MENU |");
+        printf("\n\t\t\t---------------------------------------------------------");
+        printf("\n\t\t\t | Opcoes: ");
+        printf("\n\t\t\t\t 1. Inserir valor (inteiro) na lista: ");
+        printf("\n\t\t\t\t 2. Remover ultimo valor inserido da lista: ");
+        printf("\n\t\t\t\t 3. Imprimir lista: ");
+        printf("\n\t\t\t\t 4. Buscar valor na lista: ");
+        printf("\n\t\t\t\t 5. Verificar se a lista esta vazia: ");
+        printf("\n\t\t\t\t 6. Verificar o numero de elementos da lista: ");
+        printf("\n\t\t\t\t 7. Soma dos elementos da lista: ");
+        printf("\n\t\t\t\t 8. Sair. ");
+        printf("\n\t\t\t---------------------------------------------------------");
+        printf("\n\t\t\tDigite o numero referente a opcao desejada: ");
+        scanf("%d",&op);
+
+        if(op < 1 || op > 8){
+            system("cls");
+            printf("\t\t\t---------------------------------------------------------");
+            printf("\n\t\t\tOpcao invalida. Tente novamente!\n");
+            continue;
+        }
+
         switch (op){
             case 1:
-                L = Insere(L);
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tDigite o valor que voce quer inserir na lista: ");
+                scanf("%d",&v);
+                L = Insere(L,v);
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tValor adcionado com exito!\n");
             break;
             case 2:
                 L = Exclui(L);
@@ -115,13 +156,31 @@ int main (){
                 Imprime(L);
             break;
             case 4:
-                Busca(L);
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tQual o valor que voce quer buscar: ");
+
+                scanf("%d",&v);
+                verifica = Busca(L,v);
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                if (verifica == 1){
+                    printf("\n\t\t\tO valor %d existe na lista!\n",v);
+                }else if(verifica == 0){
+                    printf("\n\t\t\tO valor %d nao existe na lista!\n",v);
+                }else{printf("\n\t\t\tErro!");}
             break;
             case 5:
-
+                verifica = ListaVazia(L);
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                if (verifica == 1){
+                    printf("\n\t\t\tA lista esta vazia!\n");
+                }else if(verifica == 0){
+                    printf("\n\t\t\tA lista nao esta vazia\n");
+                }else{printf("\n\t\t\tErro!");}
             break;
             case 6:
-
+                
             break;
             case 7:
 
