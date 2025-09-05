@@ -1,4 +1,4 @@
-# Exercicios de introdução à Listas Lineares em C.
+# Exercicios de Pilha em C.
 1. Construa, em C, um programa que contenha as seguintes funções de Lista Encadeada- Básica
 - Inserção de um Elemento da Lista (inserir no início)
 - Remoção de um Elemento da Lista (retirar do início)

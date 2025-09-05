@@ -6,15 +6,15 @@ typedef struct no {
     struct no *prox;
 }No;
 
-/* FUNÇÕES DE MANIPULAÇÃO DE PILHA
+/* FUNï¿½ï¿½ES DE MANIPULAï¿½ï¿½O DE PILHA
 
 Pilha* CriaPilha ()     CRIA A PILHA
 
-No* ins_ini (No* t, int a)  AUXILIAR DA INSERÇÃO
+No* ins_ini (No* t, int a)  AUXILIAR DA INSERï¿½ï¿½O
 
-void push (Pilha* p, int v) INSERÇÃO
+void push (Pilha* p, int v) INSERï¿½ï¿½O
 
-No* ret_ini (No* l)         AUXILIAR DA REMOÇÃO
+No* ret_ini (No* l)         AUXILIAR DA REMOï¿½ï¿½O
 
 int pop (Pilha* p)          REMOVE RETORNANDO O VALOR QUE FOI REMOVIDO
 
@@ -22,7 +22,7 @@ Pilha* liberaPilha (Pilha* p)      LIBERA A PILHA
 
 void imprime (Pilha* p)     IMPRIMA A PILHA
 
-int vaziaPilha(Pilha *p)	    VERIFICA SE A PILHA ESTÁ VAZIA, RETORNA 1
+int vaziaPilha(Pilha *p)	    VERIFICA SE A PILHA ESTï¿½ VAZIA, RETORNA 1
 
 */
 
@@ -79,7 +79,6 @@ Pilha* liberaPilha (Pilha* p){
         aux = p->Topo;
     }
     free(p);
-    printf("Pilha excluida com sucesso!");
 }
 
 void Imprime (Pilha* p){
@@ -88,11 +87,11 @@ void Imprime (Pilha* p){
        return;
     }
     No* aux = p->Topo;
-    printf("Pilha: ");
     while (aux != NULL){
-        printf("%d ",aux->info);
+        printf("%d - ",aux->info);
         aux = aux->prox;
     }
+    printf("\n");
     return;
 }
 
@@ -104,15 +103,15 @@ int vaziaPilha(Pilha *p){
     }
 }
 
-/* FUNÇÕES DE MANIPULAÇÃO DE PFILA
+/* FUNï¿½ï¿½ES DE MANIPULAï¿½ï¿½O DE PFILA
 
 Fila* CriaFila()  CRIA A FILA
 
-int VaziaFila (Fila* f) VERIFICA SE A FILA ESTÁ VAZIA RETORNA 1 QUANDO ESTÁ VAZIA
+int VaziaFila (Fila* f) VERIFICA SE A FILA ESTï¿½ VAZIA RETORNA 1 QUANDO ESTï¿½ VAZIA
 
-void InsereFila (Fila* f, int v) INSERÇÃO
+void InsereFila (Fila* f, int v) INSERï¿½ï¿½O
 
-int RetiraFila (Fila* f) REMOÇÃO
+int RetiraFila (Fila* f) REMOï¿½ï¿½O
 
 Fila* liberaFila (Fila* f) LIBERA A FILA
 
@@ -145,7 +144,7 @@ No* ins_fim (No *fim, int A)
     No *p = (No*)malloc(sizeof(No));
     p->info = A;
     p->prox = NULL;
-    if (fim != NULL) /* verifica se lista não estava vazia */
+    if (fim != NULL) /* verifica se lista nï¿½o estava vazia */
     fim->prox = p;
     return p;
 }
@@ -170,19 +169,20 @@ int RetiraFila (Fila* f)
     if (VaziaFila(f))
     {
         printf("Fila vazia.\n");
-        exit(0); /* aborta programa */
+        return 0; /* aborta programa */
     }
     v = f->ini->info;
     f->ini = retira_ini(f->ini);
-    if (f->ini == NULL) /* fila ficou vazia? */
-    f->fim = NULL;
+    if (f->ini == NULL){ /* fila ficou vazia? */
+        f->fim = NULL;
+        printf(" Fila vazia.\n");
+    }
     return v;
 }
 
 void imprimeFila (Fila* f)
 {
     No* q;
-    printf("Fila: ");
     for (q=f->ini; q!=NULL; q=q->prox)
     {
         printf("%d - ",q->info);
