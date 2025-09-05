@@ -2,13 +2,10 @@
 Lista Linear (utilizar ex1 como base
 • Inserção de um Elemento da Lista (inserir no fim da lista)
 • Remoção de um Elemento da Lista (retirar do fim da lista)
-• Uma função que retorna a quantidade de números ímpares da
-lista
+• Uma função que retorna a quantidade de números ímpares da lista
 • Uma função que receba duas listas e retorne uma terceira lista
 que é a união dessas duas listas (Não é permitido elementos
 repetidos na Lista União)*/
-
-//INACABADO
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -154,7 +151,34 @@ int somaLista(Lista *aux){
     return soma;
 }
 
+int nImparesLista(Lista *aux){
+    int cnt=0;
+    while(aux != NULL){
+        if(aux->info%2 != 0){
+            cnt++;
+        }
+        aux = aux -> prox;
+    }
+    return cnt;
+}
 
+Lista *UniaoLista(Lista *L1,Lista *L2){
+    Lista *uniao = Inicializa();
+    while(L1 != NULL){
+        if(!Busca(uniao,L1->info)){
+            uniao = InsereInicio(uniao,L1->info);
+        }
+    L1 = L1 -> prox;
+    }
+
+    while(L2 != NULL){
+        if(!Busca(uniao,L2->info)){
+            uniao = InsereFim(uniao,L2->info);
+        }
+    L2 = L2 -> prox;
+    }
+    return uniao;
+}
 
 int main (){
     int op,verifica,v;
@@ -180,7 +204,8 @@ int main (){
         printf("\n\t\t\t\t  8. Verificar o numero de elementos da lista: ");
         printf("\n\t\t\t\t  9. Soma dos elementos da lista: ");
         printf("\n\t\t\t\t 10. Quantidade de impares da lista: ");
-        printf("\n\t\t\t\t 11. Em Desenvolvimento... ");
+        printf("\n\t\t\t\t 11. Uniao de 2 listas (Principal e Secundaria(Apenas valores positivos))");
+        printf("\n\t\t\t\t Obs: A lista secundaria é criada dentro da opcao 11!");
         printf("\n\t\t\t\t 12. Sair. ");
         printf("\n\t\t\t---------------------------------------------------------");
         printf("\n\t\t\tDigite o numero referente a opcao desejada: ");
@@ -272,11 +297,39 @@ int main (){
                 printf("\n\t\t\tA soma de todos os elementos da lista eh igual a: %d\n",verifica);
             break;
             case 10:
+                verifica = nImparesLista(L);
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tA quantidade de impares da lista eh: %d\n",verifica);
+            break;
+            case 11:{
+                Lista *L2 = Inicializa();
+                v=0;
+                while(v >= 0){
+                    system("cls");
+                    printf("\t\t\t---------------------------------------------------------");
+                    printf("\n\t\t\t");
+                    Imprime(L2);
+                    printf("\n");
+                    printf("\t\t\t---------------------------------------------------------");
+                    printf("\n\t\t\tDigite o valor que voce quer inserir na lista: \n");
+                    printf("\n\t\t\tObs: os valores serao inseridos no inicio \n");
+                    printf("\n\t\t\t(Digite um valor negativo para encerrar a lista) \n");
+                    printf("\t\t\t");
+                    scanf("%d",&v);
+                    L2 = InsereInicio(L2,v);
+                }
+                L2 = ExcluiInicio(L2);
+
+                L = UniaoLista(L,L2);
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
+                Imprime(L);
+                printf("\n");
 
             break;
-            case 11:
-
-            break;
+            }
             case 12:
                 sair = 1;
             break;
