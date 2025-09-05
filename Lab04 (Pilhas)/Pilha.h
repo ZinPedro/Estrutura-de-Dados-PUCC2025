@@ -88,9 +88,8 @@ void Imprime (Pilha* p){
        return;
     }
     No* aux = p->Topo;
-    printf("Pilha: ");
     while (aux != NULL){
-        printf("%d ",aux->info);
+        printf("%d - ",aux->info);
         aux = aux->prox;
     }
     return;
