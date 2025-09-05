@@ -79,7 +79,6 @@ Pilha* liberaPilha (Pilha* p){
         aux = p->Topo;
     }
     free(p);
-    printf("Pilha excluida com sucesso!");
 }
 
 void Imprime (Pilha* p){
@@ -92,6 +91,7 @@ void Imprime (Pilha* p){
         printf("%d - ",aux->info);
         aux = aux->prox;
     }
+    printf("\n");
     return;
 }
 
@@ -105,3 +105,4 @@ int vaziaPilha(Pilha *p){
 
 
 #endif // PILHA_H_INCLUDED
+

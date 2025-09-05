@@ -18,7 +18,6 @@ O cabeçalho da função deverá ser: int compara(Lista *p1, Lista *p2)
 
 6. Dado um número inteiro, cujo os seus dígitos estão armazenados numa pilha, imprima o número inteiro
 */
-//Inacabado
 
 int ContaPilha (Pilha *p){
     int cnt=0;
@@ -45,17 +44,21 @@ void InvertePilha (Pilha *p){
 }
 
 void RemoveElementoPilha(Pilha *P, int v){
-    No* aux = p -> Topo;
-    while (aux != NULL){
-        if(aux -> info == v){
-            v = Pop(P);
+    Pilha* Paux = CriaPilha();
+    int num;
+    while (!vaziaPilha(P)){
+        num = Pop(P);
+        if(num != v){
+            Push(Paux,num);
         }
-        aux = aux->prox;
     }
+    InvertePilha(Paux);
+    P -> Topo = Paux -> Topo;
+    free(Paux);
     return;
 }
 
-int ComparaPilhas(Lista *p1, Lista *p2){
+int ComparaPilhas(Pilha *p1, Pilha *p2){
     int cnt1, cnt2;
     cnt1 = ContaPilha(p1);
     cnt2 = ContaPilha(p2);
@@ -68,9 +71,31 @@ int ComparaPilhas(Lista *p1, Lista *p2){
     }
 }
 
+Pilha *DigitosPilha(int num){
+    Pilha *P = CriaPilha();
+    int resto;
+    while(num != 0){
+        resto = num % 10;
+        num = num / 10;
+        Push(P,resto);
+    }
+    return P;
+}
+
+int RestauraIntPilha(Pilha *P){
+    int v=0,num;
+    while(!vaziaPilha(P)){
+        v = v*10;
+        num = Pop(P);
+        v = v + num;
+    }
+    return v;
+}
+
 int main (){
-        int v=0;
-        Pilha *P;
+        int v=0,sair=0,op;
+        Pilha *P = CriaPilha();
+        Pilha *Palg = CriaPilha();
 
 
 while (sair != 1){
@@ -86,8 +111,11 @@ while (sair != 1){
         printf("\n\t\t\t\t 5. Inverter a Pilha: ");
         printf("\n\t\t\t\t 6. Remover elemento especifico da Pilha: ");
         printf("\n\t\t\t\t 7. Comparacao do numero de elementos entre 2 Pilhas: ");
-        printf("\n\t\t\t\t 8. Separacao dos algarismmos de um número inteiro para Pilha: ");
+        printf("\n\t\t\t\t    (Pilha original do codigo com outra Pilha criada) ");
+        printf("\n\t\t\t\t 8. Separacao dos algarismmos de um numero inteiro para Pilha: ");
         printf("\n\t\t\t\t 9. Imprimir numero inteiro com algarismos da Pilha: ");
+        printf("\n\t\t\t\t    (Algarismos armazenados na opcao 8)");
+        printf("\n\t\t\t\t Obs: Opcoes 8 e 9 nao alteram e nao operam na Pilha Original do programa.");
         printf("\n\t\t\t\t 10. Sair. ");
         printf("\n\t\t\t---------------------------------------------------------");
         printf("\n\t\t\tDigite o numero referente a opcao desejada: ");
@@ -157,7 +185,7 @@ while (sair != 1){
                 printf("\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\tDigite o valor que voce quer remover da Pilha: ");
                 scanf("%d",&v);
-                RemoveElementoPilha(P,v)
+                RemoveElementoPilha(P,v);
                 system("cls");
                 printf("\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\t");
@@ -168,7 +196,6 @@ while (sair != 1){
                     printf("Pilha vazia.\n");
                 }
             break;
-            //PAREI AQUI (NO 7)
             case 7:{
                 Pilha *P2 = CriaPilha();
                 v=0;
@@ -183,43 +210,46 @@ while (sair != 1){
                         printf("Pilha 2 vazia.\n");
                     }
                     printf("\t\t\t---------------------------------------------------------");
-                    printf("\n\t\t\tDigite os valores que voce quer inserir na segunda Pilha \n(Digite um numero negativo para ir para a proxima pilha)\n ");
+                    printf("\n\t\t\tDigite os valores que voce quer inserir na segunda Pilha \n\t\t\t(Digite um numero negativo para ir para a proxima pilha)\n ");
+                    printf("\t\t\t");
                     scanf("%d",&v);
+                    Push(P2,v);
                 }
+                v = Pop(P2);
                 v = ComparaPilhas(P,P2);
                 system("cls");
                 printf("\t\t\t---------------------------------------------------------");
-                printf("\n\t\t\tFila invertida: ");
-                imprimeFila(F);
+                if (v == 0){
+                    printf("\n\t\t\tAs 2 Pilhas tem a mesma quantidade de elementos!\n");
+                }else if(v == 1){
+                    printf("\n\t\t\tA Pilha original tem mais elementos do que a segunda Pilha!\n");
+                }else if(v == 2){
+                    printf("\n\t\t\tA segunda Pilha tem mais elementos do que a Pilha original!\n");
+                }else{printf("\n\t\t\tErro desconhecido!\n");}
+                liberaPilha(P2);
             break;
             }
             case 8:{
-                Fila *F2 = CriaFila();
-                DivideFila(F,F2);
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tDigite o inteiro para separar e armazenar na Piha:  ");
+                scanf("%d",&v);
+                Palg = DigitosPilha(v);
                 system("cls");
                 printf("\t\t\t---------------------------------------------------------");
-                printf("\n\t\t\tFila Par: ");
-                imprimeFila(F);
-                printf("\t\t\tFila Impar: ");
-                imprimeFila(F2);
-                liberaFila(F2);
-                printf("\t\t\tObs: Continuacao do programa com operacoes na fila Par \n\t\t\t(o programa nao tem o foco de ter a opcao de escolher entre as filas)\n");
+                printf("\n\t\t\tPilha: ");
+                Imprime(Palg);
             break;
             }
             case 9:{
-                Pilha *Pmenor = CriaPilha();
-                Pilha *Pmaior = CriaPilha();
-                TransformaFilaPilha(F,Pmenor,Pmaior);
                 system("cls");
                 printf("\t\t\t---------------------------------------------------------");
-                printf("\n\t\t\tFila: ");
-                imprimeFila(F);
-                printf("\t\t\tPilha menor ou igual a 20: ");
-                Imprime(Pmenor);
-                printf("\t\t\tPilha maior que 20: ");
-                Imprime(Pmaior);
-                liberaPilha(Pmenor);
-                liberaPilha(Pmaior);
+                if(!vaziaPilha(Palg)){
+                    v = RestauraIntPilha(Palg);
+                    printf("\n\t\t\tNumero: %d\n",v);
+                }else{
+                    printf("\n\t\t\tA pilha esta vazia. Execute a opcao antes de executar esta! %d\n");
+                }
+
             break;
             }
             case 10:
