@@ -56,7 +56,7 @@ NoArv* InsereAux(NoArv *raiz, int num){
                     Pai = Pai->esq;
                 }
             }else if(novo ->info == Pai -> info){
-                printf("Numero já existe na Árvore!");
+                printf("Numero ja existe na Arvore!\n\t\t\t");
                 free(novo);
                 flag = 1;
             }else{
@@ -145,6 +145,17 @@ int BuscaArvore(Arv *A, int num){
             printf("Erro Desconhecido!");
         }
     }
+}
+
+int NumElementos(NoArv *Pai){
+    int cnt = 1;
+    if(Pai->dir != NULL){
+        cnt = cnt + NumElementos(Pai->dir);
+    }
+    if(Pai -> esq != NULL){
+        cnt = cnt + NumElementos(Pai->esq);
+    }
+    return cnt;
 }
 
 #endif // BIBLIOARVORE_H_INCLUDED

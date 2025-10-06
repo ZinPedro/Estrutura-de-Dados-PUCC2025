@@ -2,6 +2,56 @@
 #include <stdlib.h>
 #include "BiblioArvore.h"
 
+int SomaArv(Arv *A){
+
+    return SomaAux(A->raiz);
+}
+
+int SomaAux(NoArv *Pai){
+    int soma = Pai->info;
+    if(Pai->dir != NULL){
+        soma = soma + SomaAux(Pai->dir);
+    }
+    if(Pai -> esq != NULL){
+        soma = soma + SomaAux(Pai->esq);
+    }
+    return soma;
+}
+
+int NumFolhas(NoArv *Pai){
+    int cnt;
+    if(Pai -> esq == NULL && Pai -> dir == NULL){
+        cnt = 1;
+    } else {
+        cnt = 0;
+    }
+    if(Pai->dir != NULL){
+        cnt = cnt + NumFolhas(Pai->dir);
+    }
+    if(Pai -> esq != NULL){
+        cnt = cnt + NumFolhas(Pai->esq);
+    }
+    return cnt;
+}
+
+int NumElemMaiorQ(Arv *A, int num){
+    NoArv *Pai = A->raiz;
+    int flag = 0;
+    while(flag == 0){
+        if(Pai -> info <= num){
+            if(Pai->dir != NULL){
+                Pai = Pai -> dir;
+            }else{
+                return 0;
+            }
+        }
+        else{
+            return NumElementos(Pai);
+        }
+    }
+}
+
+
 int main (){
     int sair = 0,op = 0, v;
     Arv *A = CriaArvore();
@@ -13,16 +63,14 @@ int main (){
         printf("\n\t\t\t | Opcoes: ");
         printf("\n\t\t\t\t 1. Inserir valor (inteiro) na Arvore: ");
         printf("\n\t\t\t\t 2. Imprimir Arvore: ");
+        printf("\n\t\t\t\t 3. Soma dos elementos da Arvore: ");
+        printf("\n\t\t\t\t 4. Numero de Elementos da Arvore: ");
+        printf("\n\t\t\t\t 5. Numero de Folhas da Arvore: ");
+        printf("\n\t\t\t\t 6. Numero de Elementos maior que x da Arvore: ");
+
 
         printf("\n\t\t\tDigite o numero referente a opcao desejada: ");
         scanf("%d",&op);
-
-        if(op < 1 || op > 2){
-            system("cls");
-            printf("\t\t\t---------------------------------------------------------");
-            printf("\n\t\t\tOpcao invalida. Tente novamente!\n");
-            continue;
-        }
 
         switch(op){
             case 1:
@@ -52,7 +100,59 @@ int main (){
                     printf("A Arvore está vazia!");
                 }
             break;
+            case 3:
+                system("cls");
+                printf("\n\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
+                if(!VaziaArvore(A)){
+                    v = SomaArv(A);
+                    printf("Soma:  %d",v);
+                }else{
+                    printf("A Arvore está vazia!");
+                }
+            break;
+            case 4:
+                system("cls");
+                printf("\n\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
+                if(!VaziaArvore(A)){
+                    v = NumElementos(A->raiz);
+                    printf("Numero de Elementos: %d",v);
+                }else{
+                    printf("A Arvore está vazia!");
+                }
+            break;
+            case 5:
+                system("cls");
+                printf("\n\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
+                if(!VaziaArvore(A)){
+                    v = NumFolhas(A->raiz);
+                    printf("Numero de Folhas: %d",v);
+                }else{
+                    printf("A Arvore está vazia!");
+                }
+            break;
+            case 6:
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tQual o valor de x: ");
+                scanf("%d",&v);
+                system("cls");
+                printf("\n\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
+                if(!VaziaArvore(A)){
+                    printf("Numero de elementos maiores que x na Arvore: %d", NumElemMaiorQ(A,v));
 
+                }else{
+                    printf("A Arvore está vazia!");
+                }
+            break;
+
+            default:
+                system("cls");
+                printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tOpcao invalida. Tente novamente!");
+            break;
         }
 
     }
