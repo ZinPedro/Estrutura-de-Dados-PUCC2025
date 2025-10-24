@@ -47,6 +47,8 @@ int NumElemMaiorQ(Arv *A, int num){
         }
         else{
             return NumElementos(Pai);
+            flag = 1;
+            printf("Erro Desconhecido!");
         }
     }
 }
@@ -62,11 +64,13 @@ int main (){
         printf("\n\t\t\t---------------------------------------------------------");
         printf("\n\t\t\t | Opcoes: ");
         printf("\n\t\t\t\t 1. Inserir valor (inteiro) na Arvore: ");
-        printf("\n\t\t\t\t 2. Imprimir Arvore: ");
-        printf("\n\t\t\t\t 3. Soma dos elementos da Arvore: ");
-        printf("\n\t\t\t\t 4. Numero de Elementos da Arvore: ");
-        printf("\n\t\t\t\t 5. Numero de Folhas da Arvore: ");
-        printf("\n\t\t\t\t 6. Numero de Elementos maior que x da Arvore: ");
+        printf("\n\t\t\t\t 2. Remover valor (inteiro) da Arvore: ");
+        printf("\n\t\t\t\t 3. Imprimir Arvore: ");
+        printf("\n\t\t\t\t 4. Esvaziar Arvore: ");
+        printf("\n\t\t\t\t 5. Soma dos elementos da Arvore: ");
+        printf("\n\t\t\t\t 6. Numero de Elementos da Arvore: ");
+        printf("\n\t\t\t\t 7. Numero de Folhas da Arvore: ");
+        printf("\n\t\t\t\t 8. Numero de Elementos maior que x da Arvore: ");
 
 
         printf("\n\t\t\tDigite o numero referente a opcao desejada: ");
@@ -88,6 +92,19 @@ int main (){
             break;
             case 2:
                 printf("\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\tDigite o valor que voce quer remover da Arvore: ");
+                scanf("%d",&v);
+                system("cls");
+                printf("\n\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
+                A = RemoveArvore(A,v);
+                if(!VaziaArvore(A)){
+                    printf("Arvore: ");
+                    ImprimeArv(A,2);
+                }
+            break;
+            case 3:
+                printf("\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\tQual a ordem de impressao(1- PreOrder, 2- InOrder, 3- PosOrder): ");
                 scanf("%d",&v);
                 system("cls");
@@ -100,7 +117,20 @@ int main (){
                     printf("A Arvore está vazia!");
                 }
             break;
-            case 3:
+            case 4:
+                system("cls");
+                printf("\n\t\t\t---------------------------------------------------------");
+                printf("\n\t\t\t");
+                if(!VaziaArvore(A)){
+                    LiberaArvore(A);
+                    Arv *A = CriaArvore();
+                    printf("Arvore limpa com sucesso.");
+
+                }else{
+                    printf("A Arvore ja esta vazia!");
+                }
+            break;
+            case 5:
                 system("cls");
                 printf("\n\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\t");
@@ -111,7 +141,7 @@ int main (){
                     printf("A Arvore está vazia!");
                 }
             break;
-            case 4:
+            case 6:
                 system("cls");
                 printf("\n\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\t");
@@ -122,7 +152,7 @@ int main (){
                     printf("A Arvore está vazia!");
                 }
             break;
-            case 5:
+            case 7:
                 system("cls");
                 printf("\n\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\t");
@@ -133,7 +163,7 @@ int main (){
                     printf("A Arvore está vazia!");
                 }
             break;
-            case 6:
+            case 8:
                 printf("\t\t\t---------------------------------------------------------");
                 printf("\n\t\t\tQual o valor de x: ");
                 scanf("%d",&v);

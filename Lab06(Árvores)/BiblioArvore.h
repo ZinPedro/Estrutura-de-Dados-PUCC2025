@@ -71,8 +71,61 @@ NoArv* InsereAux(NoArv *raiz, int num){
 
 }
 
+NoArv* RemoverAux(NoArv *Pai, int num);
+
 void InsereArvore(Arv *A, int num){
     A->raiz = InsereAux(A->raiz, num);
+}
+
+Arv* RemoveArvore( Arv *A, int num){
+    NoArv *aux=A->raiz;
+    if(aux->info==num && aux->dir==NULL && aux->esq==NULL){
+        free(aux);
+        free(A);
+        return NULL;
+    }
+    A->raiz = RemoverAux(A->raiz,num);
+    return A;
+}
+
+NoArv* RemoverAux(NoArv *Pai, int num){
+     if(Pai == NULL){
+        printf("Elemento nao encontrado na arvore.\n");
+     }else{
+        if(Pai -> info < num){
+            Pai -> dir = RemoverAux(Pai->dir,num);
+        }else{
+            if(Pai -> info > num){
+                Pai -> esq = RemoverAux(Pai->esq , num);
+            }else{
+                if(Pai -> dir == NULL && Pai -> esq == NULL){
+                    free(Pai);
+                    Pai = NULL;
+                }else{
+                    if(Pai -> esq == NULL){
+                        NoArv *aux = Pai;
+                        Pai = Pai -> dir;
+                        free(aux);
+                    }else{
+                        if(Pai -> dir == NULL){
+                            NoArv *aux = Pai;
+                            Pai = Pai -> esq;
+                            free(aux);
+                        }else{
+                            NoArv *aux = Pai -> esq;
+                            while(aux -> dir != NULL){
+                                aux=aux->dir;
+                            }
+                            Pai -> info = aux -> info;
+                            aux -> info = num;
+                            Pai -> esq = RemoverAux(Pai->esq,num);
+                        }
+                    }
+                }
+            }
+        }
+     }
+     return Pai;
 }
 
 void PreOrder(NoArv *Pai){
@@ -145,6 +198,24 @@ int BuscaArvore(Arv *A, int num){
             printf("Erro Desconhecido!");
         }
     }
+}
+
+void LiberaArvAux(NoArv *Pai){
+    if(Pai -> esq != NULL){
+        LiberaArvAux(Pai->esq);
+    }
+    if(Pai -> dir != NULL){
+        LiberaArvAux(Pai->dir);
+    }
+    free(Pai);
+    Pai = NULL;
+    return;
+}
+
+void LiberaArvore(Arv *A){
+    LiberaArvAux(A->raiz);
+    free(A);
+    return;
 }
 
 int NumElementos(NoArv *Pai){
